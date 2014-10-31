@@ -79,7 +79,7 @@ int Patron::GetAllLifetimeCO(){
 	int n = lifetimeCO;
 	for (int i = 0; i < dependents->Count(); ++i)
 	{
-		n += dependents->Get(i).GetLifetimeCO();
+		n += dependents->Get(i)->GetLifetimeCO();
 	}
 	return n;
 }

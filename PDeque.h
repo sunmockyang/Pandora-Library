@@ -4,6 +4,13 @@ class PDeque
 {
 public:
 	PDeque();
+
+	void push(Patron*);
+	void popFront();
+	void popBack();
+	Patron* front();
+	Patron* back();
+
 	~PDeque();
 };
 
