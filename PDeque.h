@@ -2,6 +2,16 @@
 
 class PDeque
 {
+
+private:
+	class PDequeNode{
+		friend class PDeque;
+
+		private:
+			Patron* data;
+			PDequeNode* next;
+	};
+
 public:
 	PDeque();
 
@@ -12,12 +22,7 @@ public:
 	Patron* back();
 
 	~PDeque();
-};
 
-class PDequeNode{
-	friend class PDeque;
-
-	private:
-		Patron* data;
-		PDequeNode* next;
+private:
+	PDequeNode* head;
 };
