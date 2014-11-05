@@ -1,28 +1,34 @@
 #include "Patron.h"
 
+class PDequeNode;
+
 class PDeque
 {
 
 private:
-	class PDequeNode{
-		friend class PDeque;
-
-		private:
-			Patron* data;
-			PDequeNode* next;
-	};
 
 public:
 	PDeque();
 
+	Patron* front();
+	Patron* back();
 	void push(Patron*);
 	void popFront();
 	void popBack();
-	Patron* front();
-	Patron* back();
 
 	~PDeque();
 
 private:
 	PDequeNode* head;
+};
+
+class PDequeNode{
+	friend class PDeque;
+
+	public:
+		~PDequeNode();
+
+	private:
+		Patron* data;
+		PDequeNode* next;
 };
