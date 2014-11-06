@@ -9,6 +9,8 @@ public:
 	Name(std::string first, std::string last);
 
 	std::string First, Last;
+
+	bool compare(Name*);
 };
 
 #endif
