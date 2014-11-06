@@ -31,6 +31,7 @@ public:
 	bool 			canCheckOut();
 	bool			canCheckIn(Book*);
 	bool			isName(Name*);
+	int			compare(Patron*);
 	
 	Name* name;
 	unsigned int age;

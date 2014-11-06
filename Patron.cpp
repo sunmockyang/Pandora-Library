@@ -48,25 +48,6 @@ Patron* Patron::RemoveDependent(Patron* patron){
 	return dependents->Remove(patron);
 }
 
-bool Patron::canCheckOut(){
-	return (books->Count() + 1 >= MAXBOOKCHECKOUT) ? false : true;
-}
-
-bool Patron::canCheckIn(Book* book){
-	int numBooks = books->Count();
-	for (int i = 0; i < numBooks; ++i)
-	{
-		if(books->Get(i)->id == book->id){
-			return true;
-		}
-	}
-	return false;
-}
-
-bool Patron::isName(Name* checkName){
-	return name->First.compare(checkName->First) == 0 && name->Last.compare(checkName->Last) == 0;
-}
-
 BookArray* Patron::GetBooks(){
 	return books;
 }
@@ -86,6 +67,33 @@ int Patron::GetAllLifetimeCO(){
 
 int Patron::GetLifetimeCO(){
 	return lifetimeCO;
+}
+
+bool Patron::canCheckOut(){
+	return (books->Count() + 1 >= MAXBOOKCHECKOUT) ? false : true;
+}
+
+bool Patron::canCheckIn(Book* book){
+	int numBooks = books->Count();
+	for (int i = 0; i < numBooks; ++i)
+	{
+		if(books->Get(i)->id == book->id){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Patron::isName(Name* checkName){
+	return name->First.compare(checkName->First) == 0 && name->Last.compare(checkName->Last) == 0;
+}
+
+// < 0: this < arg
+//   0: this == arg
+// > 0: this > arg
+int Patron::compare(Patron* patron){
+	// TODO: use age for now, adjust to book num
+	return age - patron->age;
 }
 
 Patron::~Patron(){
