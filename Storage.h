@@ -6,6 +6,7 @@
 #include "BookArray.h"
 #include "DepArray.h"
 #include "PatronArray.h"
+#include "PDeque.h"
 
 class Storage
 {
@@ -21,7 +22,7 @@ public:
 
 private:
 	BookArray* books;
-	PatronArray* patrons;
+	PDeque* patrons;
 
 	unsigned int bookIDOffset;
 	void addBook(Book*);

@@ -2,7 +2,7 @@
 
 Storage::Storage(){
 	books = new BookArray();
-	patrons = new PatronArray();
+	patrons = new PDeque();
 	
 	bookIDOffset = 1000;
 	init();
@@ -18,11 +18,7 @@ Storage::~Storage(){
 	delete books;
 
 	// Delete all patrons
-	Patron* patron = patrons->Pop();
-	while(patron != NULL){
-		delete patron;
-		patron = patrons->Pop();
-	}
+	patrons->clear();
 	delete patrons;
 }
 
@@ -33,8 +29,8 @@ void Storage::retBooks(BookArray* bookArr){
 }
 
 void Storage::retPatrons(PatronArray* patronArr){
-	for (int i = 0; i < patrons->Count(); ++i){
-		patronArr->Add(patrons->Get(i));
+	for (int i = 0; i < patrons->count(); ++i){
+		patronArr->Add(patrons->get(i));
 	}
 }
 
@@ -51,8 +47,7 @@ void Storage::updPatrons(UpdateType action, Patron* patron){
 				patron->parent->RemoveDependent(patron);
 			}
 
-			patrons->Remove(patron);
-			delete patron;
+			patrons->remove(patron);
 			break;
 	}
 }
@@ -68,16 +63,11 @@ void Storage::addBook(Book* book){
 }
 
 void Storage::addPatron(Patron* patron){
-	if(patrons->CanAdd()){
-		patrons->Add(patron);
-	}
-	else{
-		delete patron;
-	}
+	patrons->push(patron);
 }
 
 void Storage::modPatron(Patron* patron){
-	Patron* oldPatron = patrons->Get(patrons->FindIndex(patron->name));
+	Patron* oldPatron = patrons->get(patron->name);
 
 	if (oldPatron == NULL) return; // Patron not found. Needs to be added
 

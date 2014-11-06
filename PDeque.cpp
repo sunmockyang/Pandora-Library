@@ -87,6 +87,11 @@ void PDeque::remove(Patron* patron){
 	n--;	
 }
 
+void PDeque::clear(){
+	while(n > 0)
+		popFront();
+}
+
 void PDeque::update(Patron* patron){
 	if(n == 0) return; // Lets not even bother.
 
@@ -218,7 +223,7 @@ void PDeque::insertNode(PDequeNode* node){
 }
 
 PDeque::~PDeque(){
-	
+	clear();
 }
 
 PDequeNode::~PDequeNode(){

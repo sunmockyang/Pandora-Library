@@ -35,6 +35,7 @@ public:
 
 	void remove(int);
 	void remove(Patron*);
+	void clear();
 
 	void update(Patron*);
 	void print();
