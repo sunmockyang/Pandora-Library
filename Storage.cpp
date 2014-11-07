@@ -21,7 +21,7 @@ Storage::~Storage(){
 	// patrons->clear();
 	// Iterate through the patrons and delete them all.
 	while(patrons->count() > 0){
-		delete patrons->popFront();
+		delete patrons->remove(0);
 	}
 	delete patrons;
 }

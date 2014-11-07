@@ -24,8 +24,8 @@ public:
 	Patron* set(Patron*);
 
 	void push(Patron*);
-	Patron* popFront();
-	Patron* popBack();
+	void popFront();
+	void popBack();
 
 	Patron* remove(int);
 	Patron* remove(Patron*);

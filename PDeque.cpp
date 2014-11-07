@@ -51,12 +51,12 @@ void PDeque::push(Patron* patron){
 	n++;
 }
 
-Patron* PDeque::popFront(){
-	return remove(0);
+void PDeque::popFront(){
+	remove(0);
 }
 
-Patron* PDeque::popBack(){
-	return remove(n - 1);
+void PDeque::popBack(){
+	remove(n - 1);
 }
 
 Patron* PDeque::remove(int index){
