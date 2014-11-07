@@ -13,30 +13,30 @@ int Menu::MainMenu(){
 	println("          3. View Entire Collection\n");
 	println("          0. Exit\n\n");
 
-    return enterChoice("1", "2", "3", "0");
+	return enterChoice("1", "2", "3", "0");
 }
 
 int Menu::PatronMenu(Name* name){
 	clearScreen();
 	cout << "\n\n\n\n\n                   PATRON MENU for " << name->First << " " << name->Last << "\n\n" << endl;
-    println("        Here are your options:\n\n");
-    println("          1. Check in a book\n");
-    println("          2. Check out a book\n");
-    println("          3. List books checked out\n\n");
-    println("          0. Exit\n\n");
+	println("        Here are your options:\n\n");
+	println("          1. Check in a book\n");
+	println("          2. Check out a book\n");
+	println("          3. List books checked out\n\n");
+	println("          0. Exit\n\n");
 
-    return enterChoice("1", "2", "3", "0");
+	return enterChoice("1", "2", "3", "0");
 }
 
 int Menu::AdminMenu(){
 	clearScreen();
-    println("\n\n\n\n\n                   ADMINISTRATOR MENU \n\n");
-    println("        Here are your options:\n\n");
-    println("          1. Add a Patron\n");
-    println("          2. Delete a Patron\n");
-    println("          0. Exit\n\n");
+	println("\n\n\n\n\n                   ADMINISTRATOR MENU \n\n");
+	println("        Here are your options:\n\n");
+	println("          1. Add a Patron\n");
+	println("          2. Delete a Patron\n");
+	println("          0. Exit\n\n");
 
-    return enterChoice("1", "2", "0");
+	return enterChoice("1", "2", "0");
 }
 
 void Menu::ViewCollectionMenu(BookArray* books){
@@ -100,10 +100,10 @@ void Menu::listPatrons(PatronArray* patrons){
 
 		listBooks(patron->GetBooks());
 
-		if (patron->dependents->Count() > 0){
+		if (patron->dependents->count() > 0){
 			cout << string(20, ' ') << " - dependents:" << endl;
-			for (int j = 0; j < patron->dependents->Count(); ++j){
-				Patron* dep = patron->dependents->Get(j);
+			for (int j = 0; j < patron->dependents->count(); ++j){
+				Patron* dep = patron->dependents->get(j);
 				cout << string(25, ' ') << dep->name->First << " " << dep->name->Last << endl;
 			}
 		}
@@ -131,11 +131,11 @@ Name* Menu::inputName(){
 	} while(First.compare("") == 0);
 
 	do{
-	  	print("\n        Enter patron last name:  ");
+		print("\n        Enter patron last name:  ");
 		Last = scan();
 	} while(First.compare("") == 0);
 
-  	return new Name(First, Last);
+	return new Name(First, Last);
 }
 
 Name* Menu::inputParent(){
@@ -170,10 +170,10 @@ void Menu::ErrorMessage(string msg){
 }
 
 int Menu::enterChoice(string opt1, string opt2, string opt3){
-    string val;
+	string val;
 
-    do{
-    	print("        Enter one of the choices above:  ");
+	do{
+		print("        Enter one of the choices above:  ");
 		val = scan();
 	}while(val.compare(opt1) != 0 && val.compare(opt2) != 0 && val.compare(opt3) != 0);
 
@@ -181,10 +181,10 @@ int Menu::enterChoice(string opt1, string opt2, string opt3){
 }
 
 int Menu::enterChoice(string opt1, string opt2, string opt3, string opt4){
-    string val;
+	string val;
 
-    do{
-    	print("        Enter one of the choices above:  ");
+	do{
+		print("        Enter one of the choices above:  ");
 		val = scan();
 	}while(val.compare(opt1) != 0 && val.compare(opt2) != 0 && val.compare(opt3) != 0 && val.compare(opt4) != 0);
 
@@ -220,7 +220,7 @@ void Menu::println(string msg){
 
 void Menu::clearScreen(){
 	// cout << string(50, '\n') << endl;
-    std::system("clear");
+	std::system("clear");
 }
 
 Menu::~Menu(){

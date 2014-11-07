@@ -9,8 +9,8 @@
 
 #include "Patron.h"
 
+class Patron;
 class PDequeNode;
-
 class PDeque
 {
 

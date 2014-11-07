@@ -72,16 +72,16 @@ void Storage::modPatron(Patron* patron){
 	if (oldPatron == NULL) return; // Patron not found. Needs to be added
 
 	// Compare dependents, modify any changes
-	for (int i = 0; i < patron->dependents->Count(); ++i){
-		if (-1 == oldPatron->dependents->FindIndex(patron->dependents->Get(i)->name)){
-			oldPatron->dependents->Add(patron->dependents->Get(i));
+	for (int i = 0; i < patron->dependents->count(); ++i){
+		if (oldPatron->dependents->get(patron->name) == NULL){
+			oldPatron->dependents->push(patron->dependents->get(i));
 		}
 	}
 
 	// Remove any that's been removed
-	for (int i = 0; i < oldPatron->dependents->Count(); ++i){
-		if (-1 == patron->dependents->FindIndex(oldPatron->dependents->Get(i)->name)){
-			oldPatron->dependents->Remove(oldPatron->dependents->FindIndex(patron->dependents->Get(i)->name));
+	for (int i = 0; i < oldPatron->dependents->count(); ++i){
+		if (oldPatron->dependents->get(patron->name) == NULL){
+			oldPatron->dependents->remove(oldPatron->dependents->get(patron->dependents->get(i)->name));
 		}
 	}
 
@@ -103,6 +103,7 @@ void Storage::modPatron(Patron* patron){
 	oldPatron->age = patron->age;
 	oldPatron->parent = patron->parent;
 
+	patrons->update(patron); // Update the patron priority
 }
 
 void Storage::init(){

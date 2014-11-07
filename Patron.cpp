@@ -5,7 +5,7 @@ Patron::Patron(Name* name, unsigned int age){
 	this->age = age;
 	lifetimeCO = 0;
 	books = new BookArray();
-	dependents = new DepArray();
+	dependents = new PDeque();
 	parent = 0;
 }
 
@@ -14,7 +14,7 @@ Patron::Patron(string first, string last, unsigned int age){
 	this->age = age;
 	lifetimeCO = 0;
 	books = new BookArray();
-	dependents = new DepArray();
+	dependents = new PDeque();
 	parent = 0;
 }
 
@@ -38,14 +38,14 @@ bool Patron::AddDependent(Patron* patron){
 		return false;
 
 	// Add dependent
-	dependents->Add(patron);
+	dependents->push(patron);
 	patron->parent = this;
 
 	return true;
 }
 
-Patron* Patron::RemoveDependent(Patron* patron){
-	return dependents->Remove(patron);
+void Patron::RemoveDependent(Patron* patron){
+	return dependents->remove(patron);
 }
 
 BookArray* Patron::GetBooks(){
@@ -58,9 +58,9 @@ unsigned int Patron::GetNumBooks(){
 
 int Patron::GetAllLifetimeCO(){
 	int n = lifetimeCO;
-	for (int i = 0; i < dependents->Count(); ++i)
+	for (int i = 0; i < dependents->count(); ++i)
 	{
-		n += dependents->Get(i)->GetLifetimeCO();
+		n += dependents->get(i)->GetLifetimeCO();
 	}
 	return n;
 }
@@ -93,7 +93,7 @@ bool Patron::isName(Name* checkName){
 // > 0: this > arg
 int Patron::compare(Patron* patron){
 	// TODO: use age for now, adjust to book num
-	return age - patron->age;
+	return GetAllLifetimeCO() - patron->GetAllLifetimeCO();
 }
 
 Patron::~Patron(){

@@ -5,12 +5,12 @@
 #include "Name.h"
 #include "Book.h"
 #include "BookArray.h"
-#include "DepArray.h"
+#include "PDeque.h"
 
 #define MAXBOOKCHECKOUT 20
 
 using namespace std;
-class DepArray;
+class PDeque;
 class Patron
 {
 	friend class Storage;
@@ -22,7 +22,7 @@ public:
 	void CheckOutBook(Book*);
 	void CheckInBook(Book*);
 	bool AddDependent(Patron*);
-	Patron* RemoveDependent(Patron*);
+	void RemoveDependent(Patron*);
 
 	BookArray* 			GetBooks();
 	unsigned int 	GetNumBooks();
@@ -35,7 +35,7 @@ public:
 	
 	Name* name;
 	unsigned int age;
-	DepArray* dependents;
+	PDeque* dependents;
 	Patron* parent;
 
 private:

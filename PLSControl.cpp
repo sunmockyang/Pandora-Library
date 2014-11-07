@@ -209,7 +209,7 @@ void PLSControl::DeletePatron(){
 	else if(patron->GetNumBooks() > 0){
 		menu->ErrorMessage("Patron has books checked out");
 	}
-	else if(patron->dependents->Count() > 0){
+	else if(patron->dependents->count() > 0){
 		menu->ErrorMessage("Patron has dependents. Cannot delete");
 	}
 	else{
