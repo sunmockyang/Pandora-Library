@@ -16,6 +16,18 @@ PDeque* Library::GetAllPatrons(){
 	return patrons;
 }
 
+PDeque* Library::GetAllPatronsCopy(){
+	PDeque* patrons = new PDeque();
+	storage->retPatrons(patrons);
+
+	// technically unnecessary because everytime I get from
+	// storage, it's already a copy.
+	PDeque* patronsCopy = patrons->copy();
+
+	delete patrons;
+	return patronsCopy;
+}
+
 void Library::addPatron(Patron* patron){
 	storage->updPatrons(Storage::ADD, patron);
 }

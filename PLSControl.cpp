@@ -8,6 +8,7 @@ PLSControl::PLSControl(){
 void PLSControl::Start(){
 	bool running = true;
 	BookArray* books;
+	PDeque* patrons = NULL;
 
 	// Main control loop
 	while(running){
@@ -29,6 +30,18 @@ void PLSControl::Start(){
 				delete books;
 				break;
 
+			case 4:
+				patrons = library->GetAllPatronsCopy();
+				menu->printPatrons(patrons);
+				delete patrons;
+				break;
+
+			case 5:
+				patrons = library->GetAllPatronsCopy();
+				menu->printPatronsBack(patrons);
+				delete patrons;
+				break;
+
 			default:
 				running = false;
 				break;
@@ -36,7 +49,7 @@ void PLSControl::Start(){
 	}
 
 	// End program dump
-	PDeque* patrons = library->GetAllPatrons();
+	patrons = library->GetAllPatrons();
 	books = library->GetAllBooks();
 	menu->programEnd(books, patrons);
 	delete books;

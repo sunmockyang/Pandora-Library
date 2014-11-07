@@ -10,10 +10,12 @@ int Menu::MainMenu(){
 	println("        Here are your options:\n\n");
 	println("          1. Patron Menu\n\n");
 	println("          2. Administrator Menu\n\n");
-	println("          3. View Entire Collection\n");
+	println("          3. View Entire Collection\n\n");
+	println("          4. List Patrons\n\n");
+	println("          5. List Patrons Backwards\n\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice("1", "2", "3", "0");
+	return enterChoice(new string[6]{"1", "2", "3", "4", "5", "0"});
 }
 
 int Menu::PatronMenu(Name* name){
@@ -25,7 +27,7 @@ int Menu::PatronMenu(Name* name){
 	println("          3. List books checked out\n\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice("1", "2", "3", "0");
+	return enterChoice(new string[4]{"1", "2", "3", "0"});
 }
 
 int Menu::AdminMenu(){
@@ -36,7 +38,7 @@ int Menu::AdminMenu(){
 	println("          2. Delete a Patron\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice("1", "2", "0");
+	return enterChoice(new string[3]{"1", "2", "0"});
 }
 
 void Menu::ViewCollectionMenu(BookArray* books){
@@ -111,6 +113,41 @@ void Menu::listPatrons(PDeque* patrons){
 
 }
 
+void Menu::printPatrons(PDeque* patrons){
+	clearScreen();
+	cout << "All Patrons: Most -> least lifetime #books" << endl;
+
+	while(patrons->count() > 0){
+		Patron* patron = patrons->front(); // get front
+
+		// Print
+		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
+		cout << " - " << patron->GetLifetimeCO() << " books" << endl;
+
+		patrons->popFront(); // pop front
+	}
+
+	print("Press <ENTER> to continue...");
+	scan();
+}
+
+void Menu::printPatronsBack(PDeque* patrons){
+	clearScreen();
+	cout << "All Patrons: Most -> least lifetime #books" << endl;
+	while(patrons->count() > 0){
+		Patron* patron = patrons->back(); // get back
+
+		// Print
+		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
+		cout << " - " << patron->GetLifetimeCO() << " books" << endl;
+
+		patrons->popBack(); // pop back
+	}
+
+	print("Press <ENTER> to continue...");
+	scan();
+}
+
 void Menu::programEnd(BookArray* books, PDeque* patrons){
 	clearScreen();
 	
@@ -170,26 +207,25 @@ void Menu::ErrorMessage(string msg){
 	scan();
 }
 
-int Menu::enterChoice(string opt1, string opt2, string opt3){
-	string val;
-
+int Menu::enterChoice(string opt[]){
+	string val = "";
 	do{
 		print("        Enter one of the choices above:  ");
 		val = scan();
-	}while(val.compare(opt1) != 0 && val.compare(opt2) != 0 && val.compare(opt3) != 0);
 
-	return atoi(&val);
-}
+		if(val.compare("") != 0){
+			for (int i = 0; i < sizeof(opt); ++i){
+				if(val.compare(opt[i]) == 0){
+					delete [] opt;
+					return atoi(&val);
+				}
+			}
+		}
+	}while(val != "0");
 
-int Menu::enterChoice(string opt1, string opt2, string opt3, string opt4){
-	string val;
+	delete [] opt;
 
-	do{
-		print("        Enter one of the choices above:  ");
-		val = scan();
-	}while(val.compare(opt1) != 0 && val.compare(opt2) != 0 && val.compare(opt3) != 0 && val.compare(opt4) != 0);
-
-	return atoi(&val);
+	return 0;
 }
 
 string Menu::scan(){

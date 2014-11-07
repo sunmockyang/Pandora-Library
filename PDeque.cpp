@@ -130,6 +130,18 @@ void PDeque::update(Patron* patron){
 	}
 }
 
+PDeque* PDeque::copy(){
+	PDeque* deque = new PDeque();
+	PDequeNode* cur = head;
+
+	while(cur != NULL){
+		deque->push(cur->data); // This has functionality to add stuff into the correct order
+		cur = cur->next;
+	}
+
+	return deque;
+}
+
 // Helpers
 
 PDequeNode* PDeque::findNode(int index){

@@ -28,6 +28,10 @@ class Menu
 		void	printBook(Book*);
 		void 	listBooks(BookArray*);
 		void 	listPatrons(PDeque*);
+
+		// Assignment 3 prints
+		void 	printPatrons(PDeque*);
+		void 	printPatronsBack(PDeque*);
 		
 
 		// Input
@@ -44,8 +48,7 @@ class Menu
 		int		scanInt();
 		int		atoi(string*);
 		
-		int	enterChoice(string, string, string);
-		int	enterChoice(string, string, string, string);
+		int	enterChoice(string[]);
 
 		void print(string);
 		void println(string);
