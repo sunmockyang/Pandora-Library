@@ -7,8 +7,7 @@
 #include <cstdlib>
 #include "Name.h"
 #include "Book.h"
-#include "PatronArray.h"
-#include "DepArray.h"
+#include "PDeque.h"
 #include "BookArray.h"
 
 using namespace std;
@@ -24,11 +23,11 @@ class Menu
 		int 	AdminMenu();
 		void 	ViewCollectionMenu(BookArray*);
 		void 	viewPatronBookMenu(Name*, BookArray*);
-		void	programEnd(BookArray*, PatronArray*);
+		void	programEnd(BookArray*, PDeque*);
 
 		void	printBook(Book*);
 		void 	listBooks(BookArray*);
-		void 	listPatrons(PatronArray*);
+		void 	listPatrons(PDeque*);
 		
 
 		// Input

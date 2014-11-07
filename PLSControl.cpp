@@ -36,9 +36,10 @@ void PLSControl::Start(){
 	}
 
 	// End program dump
-	PatronArray* patrons = library->GetAllPatrons();
+	PDeque* patrons = library->GetAllPatrons();
 	books = library->GetAllBooks();
 	menu->programEnd(books, patrons);
+	delete books;
 	delete patrons;
 }
 
@@ -152,8 +153,10 @@ void PLSControl::AddPatron(){
 	// library->addPatron(menu->inputName(), menu->inputAge());
 	Name* name = menu->inputName();
 	Patron* patron = new Patron(name, menu->inputAge());
-	PatronArray* patrons = library->GetAllPatrons();
 	
+	// Commented out as there's no limit to adding patrons now
+	/*
+	PDeque* patrons = library->GetAllPatrons();
 	if(!patrons->CanAdd()){ // Check to see if there's space
 		menu->ErrorMessage("Could not add patron (Limit reached)");
 		delete patrons;
@@ -161,8 +164,8 @@ void PLSControl::AddPatron(){
 		delete name;
 		return;
 	}
-	
 	delete patrons;
+	*/
 
 	library->addPatron(patron);
 

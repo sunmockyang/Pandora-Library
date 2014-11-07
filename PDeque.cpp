@@ -2,6 +2,7 @@
 
 PDeque::PDeque(){
 	head = NULL;
+	n = 0;
 }
 
 // GETTERS
@@ -31,11 +32,13 @@ Patron* PDeque::back(){
 }
 
 Patron* PDeque::get(int index){
-	return findNode(index)->data;
+	PDequeNode* node = findNode(index);
+	return (node != NULL) ? node->data : NULL;
 }
 
 Patron* PDeque::get(Name* name){
-	return findNode(name)->data;
+	PDequeNode* node = findNode(name);
+	return (node != NULL) ? node->data : NULL;
 }
 
 // MODIFIERS
@@ -48,17 +51,19 @@ void PDeque::push(Patron* patron){
 	n++;
 }
 
-void PDeque::popFront(){
-	remove(0);
+Patron* PDeque::popFront(){
+	return remove(0);
 }
 
-void PDeque::popBack(){
-	remove(n - 1);
+Patron* PDeque::popBack(){
+	return remove(n - 1);
 }
 
-void PDeque::remove(int index){
+Patron* PDeque::remove(int index){
 	PDequeNode* node = findNode(index);
-	if(node == NULL) return;
+	Patron* p = NULL;
+
+	if(node == NULL) return p;
 	if(index == 0){ // If its the head you're removing
 		head = node->next;
 	}
@@ -66,14 +71,17 @@ void PDeque::remove(int index){
 		PDequeNode* prev = findPrevNode(node->data);
 		prev->next = node->next;
 	}
+	p = node->data;
 	delete node;
 	n--;
+	return p;
 }
 
-void PDeque::remove(Patron* patron){
+Patron* PDeque::remove(Patron* patron){
 	PDequeNode* node = findNode(patron);
+	Patron* p = NULL;
 	
-	if(node == NULL) return;
+	if(node == NULL) return p;
 
 	if(head->data == patron){
 		head = node->next;
@@ -83,8 +91,10 @@ void PDeque::remove(Patron* patron){
 		prev->next = node->next;
 	}
 	
+	p = node->data;
 	delete node;
 	n--;	
+	return p;
 }
 
 void PDeque::clear(){
@@ -120,22 +130,6 @@ void PDeque::update(Patron* patron){
 	}
 }
 
-void PDeque::print(){
-#if DEBUG
-
-	PDequeNode* cur = head;
-	while(cur != NULL){
-		cout << cur->data->name->First << endl;
-		cur = cur->next;
-	}
-
-	cout << "Back: " << ((back() != NULL) ? back()->name->First : "NULL") << endl;
-	cout << "Front: " << ((front() != NULL) ? front()->name->First : "NULL") << endl;
-	cout << "Head: " << ((head != NULL) ? head->data->name->First : "NULL") << endl << endl;
-
-#endif
-}
-
 // Helpers
 
 PDequeNode* PDeque::findNode(int index){
@@ -154,7 +148,7 @@ PDequeNode* PDeque::findNode(Name* name){
 
 	if(cur == NULL) return NULL;
 
-	while(cur->next != NULL){
+	while(cur != NULL){
 		if(cur->data->name->compare(name))
 			return cur;
 
@@ -218,6 +212,7 @@ void PDeque::insertNode(PDequeNode* node){
 		cur = cur->next;
 	}
 
+	// Add at the end
 	prev->next = node;
 	node->next = NULL;
 }
@@ -226,6 +221,11 @@ PDeque::~PDeque(){
 	clear();
 }
 
+
+PDequeNode::PDequeNode(){
+	data = NULL;
+	next = NULL;
+}
 PDequeNode::~PDequeNode(){
-	delete data;
+	// delete data;
 }

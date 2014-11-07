@@ -1,12 +1,6 @@
 #ifndef PDEQUE_H
 #define PDEQUE_H
 
-#define DEBUG true
-
-#if DEBUG
-#include <iostream>
-#endif
-
 #include "Patron.h"
 
 class Patron;
@@ -30,15 +24,14 @@ public:
 	Patron* set(Patron*);
 
 	void push(Patron*);
-	void popFront();
-	void popBack();
+	Patron* popFront();
+	Patron* popBack();
 
-	void remove(int);
-	void remove(Patron*);
+	Patron* remove(int);
+	Patron* remove(Patron*);
 	void clear();
 
 	void update(Patron*);
-	void print();
 
 	~PDeque();
 
@@ -58,6 +51,7 @@ class PDequeNode{
 	friend class PDeque;
 
 	public:
+		PDequeNode();
 		~PDequeNode();
 
 	private:

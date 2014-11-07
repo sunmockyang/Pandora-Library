@@ -89,11 +89,11 @@ void Menu::listBooks(BookArray* books){
 	}
 }
 
-void Menu::listPatrons(PatronArray* patrons){
-	int numPatrons = patrons->Count();
+void Menu::listPatrons(PDeque* patrons){
+	int numPatrons = patrons->count();
 
 	for (int i = 0; i < numPatrons; ++i){
-		Patron* patron = patrons->Get(i);
+		Patron* patron = patrons->get(i);
 
 		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
 		cout << ", lifetime #books: " << patron->GetLifetimeCO() << endl;
@@ -108,9 +108,10 @@ void Menu::listPatrons(PatronArray* patrons){
 			}
 		}
 	}
+
 }
 
-void Menu::programEnd(BookArray* books, PatronArray* patrons){
+void Menu::programEnd(BookArray* books, PDeque* patrons){
 	clearScreen();
 	
 	println("\n                        COLLECTION");

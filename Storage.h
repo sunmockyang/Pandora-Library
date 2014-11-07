@@ -4,8 +4,6 @@
 #include "Book.h"
 #include "Patron.h"
 #include "BookArray.h"
-#include "DepArray.h"
-#include "PatronArray.h"
 #include "PDeque.h"
 
 class Storage
@@ -17,7 +15,7 @@ public:
 	~Storage();
 	
 	void retBooks(BookArray*);
-	void retPatrons(PatronArray*);
+	void retPatrons(PDeque*);
 	void updPatrons(UpdateType, Patron*);
 
 private:

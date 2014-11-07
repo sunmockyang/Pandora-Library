@@ -10,8 +10,8 @@ BookArray* Library::GetAllBooks(){
 	return books;
 }
 
-PatronArray* Library::GetAllPatrons(){
-	PatronArray* patrons = new PatronArray();
+PDeque* Library::GetAllPatrons(){
+	PDeque* patrons = new PDeque();
 	storage->retPatrons(patrons);
 	return patrons;
 }
@@ -29,10 +29,8 @@ void Library::deletePatron(Patron* patron){
 }
 
 Patron* Library::findPatron(Name* name){
-	PatronArray* patrons = new PatronArray();
-	storage->retPatrons(patrons);
-	
-	Patron* patron = patrons->Get(patrons->FindIndex(name));
+	PDeque* patrons = GetAllPatrons();
+	Patron* patron = patrons->get(name);
 	
 	delete patrons;
 	return patron;

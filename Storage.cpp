@@ -18,7 +18,11 @@ Storage::~Storage(){
 	delete books;
 
 	// Delete all patrons
-	patrons->clear();
+	// patrons->clear();
+	// Iterate through the patrons and delete them all.
+	while(patrons->count() > 0){
+		delete patrons->popFront();
+	}
 	delete patrons;
 }
 
@@ -28,9 +32,9 @@ void Storage::retBooks(BookArray* bookArr){
 	}
 }
 
-void Storage::retPatrons(PatronArray* patronArr){
+void Storage::retPatrons(PDeque* patronArr){
 	for (int i = 0; i < patrons->count(); ++i){
-		patronArr->Add(patrons->get(i));
+		patronArr->push(patrons->get(i));
 	}
 }
 
@@ -73,14 +77,14 @@ void Storage::modPatron(Patron* patron){
 
 	// Compare dependents, modify any changes
 	for (int i = 0; i < patron->dependents->count(); ++i){
-		if (oldPatron->dependents->get(patron->name) == NULL){
+		if (oldPatron->dependents->get(patron->dependents->get(i)->name) == NULL){
 			oldPatron->dependents->push(patron->dependents->get(i));
 		}
 	}
 
 	// Remove any that's been removed
 	for (int i = 0; i < oldPatron->dependents->count(); ++i){
-		if (oldPatron->dependents->get(patron->name) == NULL){
+		if (patron->dependents->get(oldPatron->dependents->get(i)->name) == NULL){
 			oldPatron->dependents->remove(oldPatron->dependents->get(patron->dependents->get(i)->name));
 		}
 	}

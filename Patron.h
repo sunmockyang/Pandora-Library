@@ -22,7 +22,7 @@ public:
 	void CheckOutBook(Book*);
 	void CheckInBook(Book*);
 	bool AddDependent(Patron*);
-	void RemoveDependent(Patron*);
+	Patron* RemoveDependent(Patron*);
 
 	BookArray* 			GetBooks();
 	unsigned int 	GetNumBooks();

@@ -44,7 +44,7 @@ bool Patron::AddDependent(Patron* patron){
 	return true;
 }
 
-void Patron::RemoveDependent(Patron* patron){
+Patron* Patron::RemoveDependent(Patron* patron){
 	return dependents->remove(patron);
 }
 

@@ -5,7 +5,7 @@
 #include "Menu.h"
 
 #include "BookArray.h"
-#include "PatronArray.h"
+#include "PDeque.h"
 #include "Storage.h"
 
 class Library
@@ -15,7 +15,7 @@ public:
 	~Library();
 
 	// Patrons
-	PatronArray* GetAllPatrons();
+	PDeque* GetAllPatrons();
 	Patron* findPatron(Name*);
 	void addPatron(Patron*);
 	void updatePatron(Patron*);
