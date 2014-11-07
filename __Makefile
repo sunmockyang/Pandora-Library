@@ -1,6 +1,6 @@
-OBJ = main.o PLSControl.o Menu.o Book.o Patron.o Library.o Storage.o PatronArray.o Name.o DepArray.o BookArray.o
+OBJ = main.o PLSControl.o Menu.o Book.o Patron.o Library.o Storage.o PDeque.o Name.o BookArray.o
 CC_FLAGS = -w
-EXE = a2
+EXE = a3
 
 $(EXE):	$(OBJ)
 	g++ -o $(EXE) $(OBJ)
@@ -26,14 +26,11 @@ Library.o:	Library.cpp Library.h
 Storage.o:	Storage.cpp Storage.h
 	g++ -c $(CC_FLAGS) Storage.cpp
 
-PatronArray.o:	PatronArray.cpp PatronArray.h
-	g++ -c $(CC_FLAGS) PatronArray.cpp
+PDeque.o:	PDeque.cpp PDeque.h
+	g++ -c $(CC_FLAGS) PDeque.cpp
 
 BookArray.o:	BookArray.cpp BookArray.h
 	g++ -c $(CC_FLAGS) BookArray.cpp
-
-DepArray.o:	DepArray.cpp DepArray.h
-	g++ -c $(CC_FLAGS) DepArray.cpp
 
 Name.o:	Name.cpp Name.h
 	g++ -c $(CC_FLAGS) Name.cpp
@@ -42,4 +39,4 @@ clean:
 	rm -f $(EXE) *.o
 
 package: clean
-	tar -cf ../COMP2404_A2_SunmockYang.tar *.h *.cpp Makefile README
+	tar -cf ../COMP2404_A3_SunmockYang.tar *.h *.cpp Makefile README
