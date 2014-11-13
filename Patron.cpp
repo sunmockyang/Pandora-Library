@@ -96,6 +96,24 @@ int Patron::compare(Patron* patron){
 	return GetAllLifetimeCO() - patron->GetAllLifetimeCO();
 }
 
+Patron& Patron::operator=(Patron* patron){
+	delete name;
+	delete books;
+	delete dependents;
+
+	name = new Name(patron->name->First, patron->name->Last);
+	age = patron->age;
+	dependents = new PDeque(*patron->dependents);
+	parent = patron->parent;
+
+	books = new BookArray();
+	for (int i = 0; i < patron->books->Count(); ++i) {
+		*books += patron->books->Get(i);
+	}
+
+	lifetimeCO = patron->lifetimeCO;
+}
+
 Patron::~Patron(){
 	delete name;
 	delete books;

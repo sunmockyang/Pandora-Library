@@ -19,6 +19,11 @@ public:
 	Patron(string, string, unsigned int);
 	~Patron();
 
+	Name* name;
+	unsigned int age;
+	PDeque* dependents;
+	Patron* parent;
+
 	void CheckOutBook(Book*);
 	void CheckInBook(Book*);
 	bool AddDependent(Patron*);
@@ -32,11 +37,8 @@ public:
 	bool			canCheckIn(Book*);
 	bool			isName(Name*);
 	int			compare(Patron*);
-	
-	Name* name;
-	unsigned int age;
-	PDeque* dependents;
-	Patron* parent;
+
+	Patron& operator=(Patron*);
 
 private:
 	BookArray* books;

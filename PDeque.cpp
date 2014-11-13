@@ -5,6 +5,11 @@ PDeque::PDeque(){
 	n = 0;
 }
 
+PDeque::PDeque(PDeque& deque){
+	head = deque.head;
+	n = deque.n;
+}
+
 // GETTERS
 
 int PDeque::count(){

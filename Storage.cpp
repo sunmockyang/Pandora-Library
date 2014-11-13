@@ -75,37 +75,7 @@ void Storage::modPatron(Patron* patron){
 
 	if (oldPatron == NULL) return; // Patron not found. Needs to be added
 
-	// Compare dependents, modify any changes
-	for (int i = 0; i < patron->dependents->count(); ++i){
-		if (oldPatron->dependents->get(patron->dependents->get(i)->name) == NULL){
-			oldPatron->dependents->push(patron->dependents->get(i));
-		}
-	}
-
-	// Remove any that's been removed
-	for (int i = 0; i < oldPatron->dependents->count(); ++i){
-		if (patron->dependents->get(oldPatron->dependents->get(i)->name) == NULL){
-			oldPatron->dependents->remove(oldPatron->dependents->get(patron->dependents->get(i)->name));
-		}
-	}
-
-	// Compare books
-	for (int i = 0; i < patron->books->Count(); ++i){
-		if (-1 == oldPatron->books->FindIndex(patron->books->Get(i)->id)){
-			*oldPatron->books += patron->books->Get(i);
-		}
-	}
-	// Remove any that's been removed
-	for (int i = 0; i < oldPatron->books->Count(); ++i){
-		if (-1 == patron->books->FindIndex(oldPatron->books->Get(i)->id)){
-			oldPatron->books->Remove(oldPatron->books->FindIndex(patron->books->Get(i)->id));
-		}
-	}
-
-	// Update the attributes
-	oldPatron->lifetimeCO = patron->lifetimeCO;
-	oldPatron->age = patron->age;
-	oldPatron->parent = patron->parent;
+	oldPatron = patron;
 
 	patrons->update(patron); // Update the patron priority
 }

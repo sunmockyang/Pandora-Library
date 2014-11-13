@@ -12,6 +12,7 @@ private:
 
 public:
 	PDeque();
+	PDeque(PDeque&);
 
 	int count();
 	bool contains(Patron*);
