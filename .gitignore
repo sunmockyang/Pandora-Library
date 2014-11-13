@@ -4,6 +4,8 @@ _git*
 #this project
 main
 a3
+*.sublime-workspace
+*.sublime-project
 
 # Compiled Object files
 *.slo
