@@ -27,6 +27,8 @@ class BookArray{
 		int FindIndex(Book*);
 		int FindIndex(unsigned int);
 
+		BookArray& operator+=(Book*);
+
 	private:
 		int count;
 		Book* arr[MAXARRNUM];

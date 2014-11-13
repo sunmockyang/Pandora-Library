@@ -93,3 +93,7 @@ int BookArray::FindIndex(unsigned int id){
 	}
 	return -1;
 }
+
+BookArray& BookArray::operator+=(Book* book){
+	Add(book);
+}

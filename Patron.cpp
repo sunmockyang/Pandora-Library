@@ -28,7 +28,7 @@ void Patron::CheckInBook(Book* book){
 
 void Patron::CheckOutBook(Book* book){
 	if(books->Count() < MAXBOOKCHECKOUT){
-		books->Add(book);
+		*books += book;
 		lifetimeCO++;
 	}
 }

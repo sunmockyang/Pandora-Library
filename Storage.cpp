@@ -28,7 +28,7 @@ Storage::~Storage(){
 
 void Storage::retBooks(BookArray* bookArr){
 	for (int i = 0; i < books->Count(); ++i){
-		bookArr->Add(books->Get(i));
+		*bookArr += books->Get(i);
 	}
 }
 
@@ -58,7 +58,7 @@ void Storage::updPatrons(UpdateType action, Patron* patron){
 
 void Storage::addBook(Book* book){
 	if(books->CanAdd()){
-		books->Add(book);
+		*books += book;
 		book->id = bookIDOffset + books->Count();
 	}
 	else{
@@ -92,7 +92,7 @@ void Storage::modPatron(Patron* patron){
 	// Compare books
 	for (int i = 0; i < patron->books->Count(); ++i){
 		if (-1 == oldPatron->books->FindIndex(patron->books->Get(i)->id)){
-			oldPatron->books->Add(patron->books->Get(i));
+			*oldPatron->books += patron->books->Get(i);
 		}
 	}
 	// Remove any that's been removed
