@@ -31,13 +31,13 @@ void PLSControl::Start(){
 				break;
 
 			case 4:
-				patrons = library->GetAllPatronsCopy();
+				patrons = library->GetAllPatrons();
 				menu->printPatrons(patrons);
 				delete patrons;
 				break;
 
 			case 5:
-				patrons = library->GetAllPatronsCopy();
+				patrons = library->GetAllPatrons();
 				menu->printPatronsBack(patrons);
 				delete patrons;
 				break;
