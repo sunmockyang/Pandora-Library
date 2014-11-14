@@ -15,7 +15,7 @@ int Menu::MainMenu(){
 	println("          5. List Patrons Backwards\n\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice(new string[6]{"1", "2", "3", "4", "5", "0"});
+	return enterChoice(new string[6]{"1", "2", "3", "4", "5", "0"}, 6);
 }
 
 int Menu::PatronMenu(Name* name){
@@ -27,7 +27,7 @@ int Menu::PatronMenu(Name* name){
 	println("          3. List books checked out\n\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice(new string[4]{"1", "2", "3", "0"});
+	return enterChoice(new string[4]{"1", "2", "3", "0"}, 4);
 }
 
 int Menu::AdminMenu(){
@@ -38,7 +38,7 @@ int Menu::AdminMenu(){
 	println("          2. Delete a Patron\n");
 	println("          0. Exit\n\n");
 
-	return enterChoice(new string[3]{"1", "2", "0"});
+	return enterChoice(new string[3]{"1", "2", "0"}, 3);
 }
 
 void Menu::ViewCollectionMenu(BookArray* books){
@@ -207,14 +207,14 @@ void Menu::ErrorMessage(string msg){
 	scan();
 }
 
-int Menu::enterChoice(string opt[]){
+int Menu::enterChoice(string opt[], int numChoices){
 	string val = "";
 	do{
 		print("        Enter one of the choices above:  ");
 		val = scan();
 
 		if(val.compare("") != 0){
-			for (int i = 0; i < sizeof(opt); ++i){
+			for (int i = 0; i < numChoices; ++i){
 				if(val.compare(opt[i]) == 0){
 					delete [] opt;
 					return atoi(&val);

@@ -48,7 +48,7 @@ class Menu
 		int		scanInt();
 		int		atoi(string*);
 		
-		int	enterChoice(string[]);
+		int	enterChoice(string[], int);
 
 		void print(string);
 		void println(string);
