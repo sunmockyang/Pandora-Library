@@ -22,7 +22,7 @@ PDeque* Library::GetAllPatronsCopy(){
 
 	// technically unnecessary because everytime I get from
 	// storage, it's already a copy.
-	PDeque* patronsCopy = patrons->copy();
+	PDeque* patronsCopy = new PDeque(*patrons);
 
 	delete patrons;
 	return patronsCopy;

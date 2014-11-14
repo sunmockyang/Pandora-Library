@@ -77,7 +77,7 @@ void Storage::modPatron(Patron* patron){
 
 	oldPatron = patron;
 
-	patrons->update(patron); // Update the patron priority
+	patrons->update(oldPatron); // Update the patron priority
 }
 
 void Storage::init(){

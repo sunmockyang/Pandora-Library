@@ -6,8 +6,14 @@ PDeque::PDeque(){
 }
 
 PDeque::PDeque(PDeque& deque){
-	head = deque.head;
-	n = deque.n;
+	n = 0;
+	head = NULL;
+	PDequeNode* cur = deque.head;
+
+	while(cur != NULL){
+		push(cur->data); // This has functionality to add stuff into the correct order
+		cur = cur->next;
+	}
 }
 
 // GETTERS
@@ -133,18 +139,6 @@ void PDeque::update(Patron* patron){
 		prev->next = curr->next;
 		insertNode(curr);
 	}
-}
-
-PDeque* PDeque::copy(){
-	PDeque* deque = new PDeque();
-	PDequeNode* cur = head;
-
-	while(cur != NULL){
-		deque->push(cur->data); // This has functionality to add stuff into the correct order
-		cur = cur->next;
-	}
-
-	return deque;
 }
 
 // Helpers

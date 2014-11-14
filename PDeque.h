@@ -34,8 +34,6 @@ public:
 
 	void update(Patron*);
 
-	PDeque* copy();
-
 	~PDeque();
 
 private:
