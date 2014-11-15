@@ -25,8 +25,8 @@ public:
 	Patron* set(Patron*);
 
 	void push(Patron*);
-	void popFront();
-	void popBack();
+	PDeque* operator--();
+	PDeque* operator--(int);
 
 	Patron* remove(int);
 	Patron* remove(Patron*);

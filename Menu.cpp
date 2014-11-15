@@ -124,7 +124,7 @@ void Menu::printPatrons(PDeque* patrons){
 		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
 		cout << " - " << patron->GetLifetimeCO() << " books" << endl;
 
-		patrons->popFront(); // pop front
+		--(*patrons); // pop front
 	}
 
 	print("Press <ENTER> to continue...");
@@ -141,7 +141,7 @@ void Menu::printPatronsBack(PDeque* patrons){
 		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
 		cout << " - " << patron->GetLifetimeCO() << " books" << endl;
 
-		patrons->popBack(); // pop back
+		(*patrons)--; // pop back
 	}
 
 	print("Press <ENTER> to continue...");

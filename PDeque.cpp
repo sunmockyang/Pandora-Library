@@ -62,12 +62,16 @@ void PDeque::push(Patron* patron){
 	n++;
 }
 
-void PDeque::popFront(){
+// Prefix
+PDeque* PDeque::operator--(){
 	remove(0);
+	return this;
 }
 
-void PDeque::popBack(){
+// Postfix
+PDeque* PDeque::operator--(int){
 	remove(n - 1);
+	return this;
 }
 
 Patron* PDeque::remove(int index){
@@ -110,7 +114,7 @@ Patron* PDeque::remove(Patron* patron){
 
 void PDeque::clear(){
 	while(n > 0)
-		popFront();
+		remove(0);
 }
 
 void PDeque::update(Patron* patron){
