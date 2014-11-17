@@ -9,7 +9,6 @@
 
 #define MAXBOOKCHECKOUT 20
 
-using namespace std;
 class PDeque;
 class Patron
 {

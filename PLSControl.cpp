@@ -165,25 +165,12 @@ void PLSControl::AdminMode(){
 void PLSControl::AddPatron(){
 	// library->addPatron(menu->inputName(), menu->inputAge());
 	Name* name = menu->inputName();
-	Patron* patron = new Patron(name, menu->inputAge());
-	
-	// Commented out as there's no limit to adding patrons now
-	/*
-	PDeque* patrons = library->GetAllPatrons();
-	if(!patrons->CanAdd()){ // Check to see if there's space
-		menu->ErrorMessage("Could not add patron (Limit reached)");
-		delete patrons;
-		delete patron;
-		delete name;
-		return;
-	}
-	delete patrons;
-	*/
-
-	library->addPatron(patron);
+	int age = menu->inputAge();
+	Patron* patron = NULL;
 
 	// Check to see if the patron is of age.
-	if (patron->age < 18) {
+	if (age < 18) {
+		patron = new ChildPatron(name, age);
 		Patron* parent = NULL;
 		bool canParent = false;
 
@@ -211,6 +198,10 @@ void PLSControl::AddPatron(){
 		} while(parent == NULL || canParent == false);
 
 	}
+	else {
+		patron = new AdultPatron(name, age);
+	}
+	library->addPatron(patron);
 }
 
 void PLSControl::DeletePatron(){

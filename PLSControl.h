@@ -2,6 +2,8 @@
 #include "Menu.h"
 #include "Book.h"
 #include "Patron.h"
+#include "AdultPatron.h"
+#include "ChildPatron.h"
 #include "BookArray.h"
 #include "PDeque.h"
 
