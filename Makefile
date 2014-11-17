@@ -21,3 +21,10 @@ clean:
 
 package:
 	tar -cf ../COMP2404_A3_SunmockYang.tar *.h *.cpp Makefile
+
+test: clean main
+	./main < tests/ListPatrons
+	./main < tests/PatronMenu
+	./main < tests/ViewEntireCollection
+	./main < tests/AddRemoveAdultPatron
+	./main < tests/AddRemoveChildPatron
