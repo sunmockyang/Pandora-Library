@@ -51,7 +51,7 @@ void Storage::updPatrons(UpdateType action, Patron* patron){
 				patron->parent->RemoveDependent(patron);
 			}
 
-			patrons->remove(patron);
+			delete patrons->remove(patron);
 			break;
 	}
 }
