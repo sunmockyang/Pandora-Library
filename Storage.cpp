@@ -108,13 +108,13 @@ void Storage::init(){
 
 
 	// INITIALIZE PATRONS
-	Patron* parent = new Patron(new Name("Sunmock", "Yang"), 22);
+	Patron* parent = new AdultPatron(new Name("Sunmock", "Yang"), 22);
 	addPatron(parent);
-	Patron* child = new Patron(new Name("Little", "Anne"), 12);
+	Patron* child = new ChildPatron(new Name("Little", "Anne"), 12);
 	addPatron(child);
 	parent->AddDependent(child);
 
-	addPatron(new Patron(new Name("Emily", "Deng"), 22));
-	addPatron(new Patron(new Name("Priscilla", "Hwang"), 22));
-	addPatron(new Patron(new Name("s", "s"), 45));
+	addPatron(new AdultPatron(new Name("Emily", "Deng"), 22));
+	addPatron(new AdultPatron(new Name("Priscilla", "Hwang"), 22));
+	addPatron(new AdultPatron(new Name("s", "s"), 45));
 }

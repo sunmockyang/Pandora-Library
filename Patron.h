@@ -30,8 +30,7 @@ public:
 
 	BookArray* 			GetBooks();
 	unsigned int 	GetNumBooks();
-	int				GetAllLifetimeCO();
-	int				GetLifetimeCO();
+	virtual int		GetLifetimeCO();
 	bool 			canCheckOut();
 	bool			canCheckIn(Book*);
 	bool			isName(Name*);
@@ -41,6 +40,8 @@ public:
 
 private:
 	BookArray* books;
+
+protected:
 	int lifetimeCO;
 };
 

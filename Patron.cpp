@@ -56,15 +56,6 @@ unsigned int Patron::GetNumBooks(){
 	return books->Count();
 }
 
-int Patron::GetAllLifetimeCO(){
-	int n = lifetimeCO;
-	for (int i = 0; i < dependents->count(); ++i)
-	{
-		n += dependents->get(i)->GetLifetimeCO();
-	}
-	return n;
-}
-
 int Patron::GetLifetimeCO(){
 	return lifetimeCO;
 }
@@ -93,7 +84,7 @@ bool Patron::isName(Name* checkName){
 // > 0: this > arg
 int Patron::compare(Patron* patron){
 	// TODO: use age for now, adjust to book num
-	return GetAllLifetimeCO() - patron->GetAllLifetimeCO();
+	return GetLifetimeCO() - patron->GetLifetimeCO();
 }
 
 Patron& Patron::operator=(Patron* patron){

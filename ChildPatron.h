@@ -8,6 +8,8 @@ class ChildPatron : public Patron
 public:
 	ChildPatron(Name*, unsigned int);
 	~ChildPatron();
+
+	virtual int GetLifetimeCO();
 };
 
 #endif

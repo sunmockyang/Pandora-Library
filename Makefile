@@ -24,7 +24,8 @@ package:
 
 test: clean main
 	./main < tests/ListPatrons
-	./main < tests/PatronMenu
 	./main < tests/ViewEntireCollection
 	./main < tests/AddRemoveAdultPatron
 	./main < tests/AddRemoveChildPatron
+	./main < tests/PatronMenu
+	./main < tests/DependentCheckout

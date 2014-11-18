@@ -8,6 +8,8 @@ class AdultPatron : public Patron
 public:
 	AdultPatron(Name*, unsigned int);
 	~AdultPatron();
+
+	virtual int GetLifetimeCO();
 };
 
 #endif
