@@ -16,6 +16,7 @@ public:
 
 	// Patrons
 	PDeque* GetAllPatrons();
+	PDeque* GetAllPatronsCopy();
 	Patron* findPatron(Name*);
 	void addPatron(Patron*);
 	void updatePatron(Patron*);
