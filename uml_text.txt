@@ -1,0 +1,155 @@
+PLSControl
+
++ Start(): void
++ AdminMode(): void
++ AddPatron(): void
++ DeletePatron(): void
++ PatronMode(): void
++ CheckInBook(Patron*): void
++ CheckOutBook(Patron*): void
+
+
+Menu
+
++ MainMenu(): int
++ PatronMenu(Name*): int
++ AdminMenu(): int
++ ViewCollectionMenu(BookArray*): void
++ viewPatronBookMenu(Name*, BookArray*): void
++ programEnd(BookArray*, PDeque*): void
++ printBook(Book*): void
++ listBooks(BookArray*): void
++ listPatrons(PDeque*): void
++ printPatrons(PDeque*): void
++ printPatronsBack(PDeque*): void
++ inputName(): Name*
++ inputAge(): unsigned int
++ inputBookID(): unsigned int
++ inputParent(): Name*
++ ErrorMessage(strin): void
+- scan(): string
+- scanInt(): int
+- atoi(string*): int
+- enterChoice(string[], int): int
+- print(string): void
+- println(string): void
+- clearScreen(): void
+
+
+Library
+
++ GetAllPatrons(): PDeque*
++ findPatron(Name*): Patron*
++ addPatron(Patron*): void
++ updatePatron(Patron*): void
++ deletePatron(Patron*): void
++ GetAllBooks(): BookArray*
++ findBook(unsigned int): Book*
+
+
+Storage
+
++ retBooks(BookArray*): void
++ retPatrons(PDeque*): void
++ updPatrons(UpdateType, Patron*): void
+- addPatron(Patron*): void
+- modPatron(Patron*): void
+- findPatron(Name*): Patron*
+- init(): void
+
+
+Server
+- maxIndex int
+
++ retrieve(BookArray&): void
+
+
+BookArray
++ count int
+
++ Get(Book*): int
++ Set(int, Book*): void
++ Add(int, Book*): Book*
++ Add(Book*): Book*
++ Remove(int): Book*
++ Remove(Book*): Book*
++ Pop(): Book*
++ Contains(Book*): bool
++ CanAdd(): bool
++ Count(): int
++ FindIndex(Book*): int
++ FindIndex(Name*): int
++ operator+=(Book*): BookArray&
+
+
+Book
+- nextId static int
+- id unsigned int
+- title const string
+- author const string
+- year const int
+- status BookStatusType
+
++ setStatus(BookStatusType): void
++ getStatus(): BookStatusType
++ getId(): int
++ getTitle(): string
++ getAuthor(): string
++ checkIn(): bool
++ checkOut(): bool
++ canCheckOut(): bool
+
+
+Patron
++ age unsigned int
+# lifetimeCO int
+
++ CheckOutBook(Book*): void
++ CheckInBook(Book*): void
++ MakeDependent(Patron*): book
++ RemoveDependent(Patron*): Patron*
++ GetBooks(): BookArray*
++ GetNumBooks(): unsigned int
++ GetLifetimeCO(): int
++ canCheckOut(): bool
++ canCheckIn(): bool
++ isName(Name*): bool
++ compare(Patron*): int
++ operator=(Patron*): Patron&
+
+AdultPatron
+
++ GetLifetimeCO(): void
++ MakeDependent(Patron*): book
+
+ChildPatron
+
++ GetLifetimeCO(): void
++ MakeDependent(Patron*): book
+
+PDeque
+- n int
+
++ count(): int
++ contains(Patron*): bool
++ front(): Patron*
++ back(): Patron*
++ get(int): Patron*
++ get(Name*): Patron*
++ set(Patron*): Patron*
++ push(Patron*): void
++ operator--(): PDeque*
++ operator--(int): PDeque*
++ remove(int): Patron*
++ remove(Patron*): Patron*
++ clear(): void
++ update(Patron*): void
+- findNode(int): PDequeNode*
+- findNode(Name*): PDequeNode*
+- findNode(Patron*): PDequeNode*
+- findPrevNode(Patron*): PDequeNode*
+- insertNode(PDequeNode*): void
+
+
+PDequeNode
+
