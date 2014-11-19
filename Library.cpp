@@ -43,7 +43,7 @@ Book* Library::findBook(unsigned int id){
 	int numBooks = books->Count();
 	for (int i = 0; i < numBooks; ++i)
 	{
-		if(books->Get(i)->id == id){
+		if(books->Get(i)->getId() == id){
 			Book* book = books->Get(i);
 			delete books;
 			return book;

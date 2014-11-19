@@ -87,7 +87,7 @@ int BookArray::FindIndex(Book* book){
 int BookArray::FindIndex(unsigned int id){
 	int numBooks = Count();
 	for (int i = 0; i < numBooks; ++i){
-		if(arr[i]->id == id){
+		if(arr[i]->getId() == id){
 			return i;
 		}
 	}

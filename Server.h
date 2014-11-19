@@ -2,7 +2,6 @@
 #define SERVER_H
 
 #include <string>
-#include "types.h"
 #include "Book.h"
 #include "BookArray.h"
 
@@ -13,7 +12,7 @@ class Server
     ~Server();
     void retrieve(BookArray&);
   private:
-    Book* books[MAX_COLL_SIZE];
+    Book* books[1024];
     int   maxIndex;
 };
 

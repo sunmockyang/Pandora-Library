@@ -1,9 +1,22 @@
  #include "Book.h"
 
-Book::Book(string bookTitle, string bookAuthor, int bookYear) :
+int Book::nextId = 1001;
+
+Book::Book(string bookTitle, string bookAuthor, int bookYear, BookStatusType bookStatus) :
 	title(bookTitle), author(bookAuthor), year(bookYear){
-		status = CHECKED_IN;
+		id     = nextId++;
+		status = bookStatus;
 }
+
+void Book::setStatus(BookStatusType s)
+{
+	status = s;
+}
+
+int            Book::getId()     { return id; }
+string         Book::getTitle()  { return title; }
+string         Book::getAuthor() { return author; }
+BookStatusType Book::getStatus() { return status; }
 
 bool Book::checkIn(){
 	if (status == CHECKED_OUT){

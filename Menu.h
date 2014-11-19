@@ -9,6 +9,7 @@
 #include "Book.h"
 #include "PDeque.h"
 #include "BookArray.h"
+#include "types.h"
 
 using namespace std;
 

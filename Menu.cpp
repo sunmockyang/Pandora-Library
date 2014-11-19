@@ -65,20 +65,20 @@ void Menu::viewPatronBookMenu(Name* name, BookArray* books){
 }
 
 void Menu::printBook(Book* book){
-	cout << "\t" << book->id << "\t" << book->title << string(40 - book->title.length(), ' ');
-	cout << book->author << string(20 - book->author.length(), ' ');
+	cout << "\t" << book->getId() << "\t" << book->getTitle() << string(40 - book->getTitle().length(), ' ');
+	cout << book->getAuthor() << string(20 - book->getAuthor().length(), ' ');
 
-	switch(book->status) {
-		case Book::CHECKED_IN:
+	switch(book->getStatus()) {
+		case CHECKED_IN:
 			println("Checked in");
 			break;
-		case Book::CHECKED_OUT:
+		case CHECKED_OUT:
 			println("Checked out");
 			break;
-		case Book::UNDER_REPAIR:
+		case UNDER_REPAIR:
 			println("Under repair");
 			break;
-		case Book::LOST:
+		case LOST:
 			println("Lost");
 			break;
 	}
