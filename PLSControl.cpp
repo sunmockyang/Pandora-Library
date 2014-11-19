@@ -186,10 +186,10 @@ void PLSControl::AddPatron(){
 				continue;
 			}
 
-			canParent = parent->AddDependent(patron);
+			canParent = patron->MakeDependent(parent);
 
 			if (canParent == false){
-				menu->ErrorMessage("Parent not old enough");
+				menu->ErrorMessage("Invalid dependent"); // Should never happen
 				continue;
 			}
 			else{

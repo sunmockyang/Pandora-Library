@@ -19,26 +19,27 @@ public:
 	~Patron();
 
 	Name* name;
-	unsigned int age;
 	PDeque* dependents;
 	Patron* parent;
 
 	void CheckOutBook(Book*);
 	void CheckInBook(Book*);
-	bool AddDependent(Patron*);
+	virtual bool MakeDependent(Patron*);
 	Patron* RemoveDependent(Patron*);
 
-	BookArray* 			GetBooks();
+	unsigned int	GetAge();
+	BookArray* 		GetBooks();
 	unsigned int 	GetNumBooks();
 	virtual int		GetLifetimeCO();
 	bool 			canCheckOut();
 	bool			canCheckIn(Book*);
 	bool			isName(Name*);
-	int			compare(Patron*);
+	int				compare(Patron*);
 
 	Patron& operator=(Patron*);
 
 private:
+	unsigned int age;
 	BookArray* books;
 
 protected:

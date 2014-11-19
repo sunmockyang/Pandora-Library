@@ -12,3 +12,7 @@ int AdultPatron::GetLifetimeCO(){
 	}
 	return n;
 }
+
+bool AdultPatron::MakeDependent(Patron* parent){
+	return false; // Adults cannot be dependents
+}

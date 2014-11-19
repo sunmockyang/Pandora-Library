@@ -10,6 +10,7 @@ public:
 	~AdultPatron();
 
 	virtual int GetLifetimeCO();
+	virtual bool MakeDependent(Patron*);
 };
 
 #endif

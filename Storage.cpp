@@ -112,7 +112,7 @@ void Storage::init(){
 	addPatron(parent);
 	Patron* child = new ChildPatron(new Name("Little", "Anne"), 12);
 	addPatron(child);
-	parent->AddDependent(child);
+	child->MakeDependent(parent);
 
 	addPatron(new AdultPatron(new Name("Emily", "Deng"), 22));
 	addPatron(new AdultPatron(new Name("Priscilla", "Hwang"), 22));

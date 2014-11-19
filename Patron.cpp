@@ -1,17 +1,15 @@
 #include "Patron.h"
 
-Patron::Patron(Name* name, unsigned int age){
+Patron::Patron(Name* name, unsigned int age) : age(age){
 	this->name = name;
-	this->age = age;
 	lifetimeCO = 0;
 	books = new BookArray();
 	dependents = new PDeque();
 	parent = 0;
 }
 
-Patron::Patron(string first, string last, unsigned int age){
+Patron::Patron(string first, string last, unsigned int age) : age(age){
 	name = new Name(first, last);
-	this->age = age;
 	lifetimeCO = 0;
 	books = new BookArray();
 	dependents = new PDeque();
@@ -33,19 +31,23 @@ void Patron::CheckOutBook(Book* book){
 	}
 }
 
-bool Patron::AddDependent(Patron* patron){
-	if(age < 18)
+bool Patron::MakeDependent(Patron* parent){
+	if(parent->age < 18)
 		return false;
 
 	// Add dependent
-	dependents->push(patron);
-	patron->parent = this;
+	parent->dependents->push(this);
+	this->parent = parent;
 
 	return true;
 }
 
 Patron* Patron::RemoveDependent(Patron* patron){
 	return dependents->remove(patron);
+}
+
+unsigned int Patron::GetAge(){
+	return age;
 }
 
 BookArray* Patron::GetBooks(){
