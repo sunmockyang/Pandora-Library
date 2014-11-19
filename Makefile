@@ -9,7 +9,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 # Main target
 $(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXEC)
+	$(CC) $(OBJECTS) Server.o -o $(EXEC)
 
 # To obtain object files
 %.o: %.cpp

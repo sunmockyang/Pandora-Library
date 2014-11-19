@@ -70,7 +70,7 @@ bool Patron::canCheckIn(Book* book){
 	int numBooks = books->Count();
 	for (int i = 0; i < numBooks; ++i)
 	{
-		if(books->Get(i)->id == book->id){
+		if(books->Get(i)->getId() == book->getId()){
 			return true;
 		}
 	}

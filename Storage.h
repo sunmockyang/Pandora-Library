@@ -7,6 +7,7 @@
 #include "ChildPatron.h"
 #include "BookArray.h"
 #include "PDeque.h"
+#include "Server.h"
 
 class Storage
 {
@@ -21,11 +22,8 @@ public:
 	void updPatrons(UpdateType, Patron*);
 
 private:
-	BookArray* books;
+	Server* server;
 	PDeque* patrons;
-
-	unsigned int bookIDOffset;
-	void addBook(Book*);
 
 	void addPatron(Patron*);
 	void modPatron(Patron*);
