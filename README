@@ -1,6 +1,6 @@
 Program:			The Pandora Library System (PLS)
 Program Author: 	Sunmock Yang
-Creation Date:		Nov 6, 2014
+Creation Date:		Nov 20, 2014
 
 ######################## Purpose of program ########################
 The pandora library system was made to keep track of books and patrons who are borrowing the books. The patron must sign in, and they will be able to checkout available books, and check in books that they've already checkd out. An admin can add/remove patrons from the system, and any user is able to view all books in the library.
@@ -13,12 +13,12 @@ To build:
 - cd into the directory and run 'make'
 
 To use:
-- Run the 'a3' executable that is generated
+- Run the 'a4' executable that is generated
 - Type in your choice and press enter
 - Follow the instructions on screen
 
 ######################## Credits ########################
-Most program messages have been copied over from the C version of the pandora library system provided by Carleton University
+Most program message strings have been copied over from the C version of the pandora library system provided by Carleton University
 
 ######################## Notes ########################
 - The cstdlib was included in Menu.h only for clearing the screen. It was used in the A1 solution code.

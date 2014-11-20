@@ -1,31 +1,26 @@
-# Declaration of variables
 CC = g++
 CC_FLAGS = -w
+EXE = a4
+OBJ = AdultPatron.o BookArray.o Book.o ChildPatron.o Library.o main.o Menu.o Name.o Patron.o PDeque.o PLSControl.o Storage.o
 
-# File names
-EXEC = main
-SOURCES = $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
 
-# Main target
-$(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) Server.o -o $(EXEC)
+$(EXE): $(OBJ)
+	$(CC) $(OBJ) Server.o -o $(EXE)
 
-# To obtain object files
+# Compiler for the necessary object files 
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@
 
-# To remove generated files
 clean:
-	rm -f $(EXEC) $(OBJECTS)
+	rm -f $(EXE) $(OBJ)
 
-package:
-	tar -cf ../COMP2404_A3_SunmockYang.tar *.h *.cpp Makefile
+package: clean
+	tar -cf ../COMP2404_A4_SunmockYang.tar *.h *.cpp Server.o Makefile README
 
-test: clean main
-	./main < tests/ListPatrons
-	./main < tests/ViewEntireCollection
-	./main < tests/AddRemoveAdultPatron
-	./main < tests/AddRemoveChildPatron
-	./main < tests/PatronMenu
-	./main < tests/DependentCheckout
+# test: clean main
+# 	./main < tests/ListPatrons
+# 	./main < tests/ViewEntireCollection
+# 	./main < tests/AddRemoveAdultPatron
+# 	./main < tests/AddRemoveChildPatron
+# 	./main < tests/PatronMenu
+# 	./main < tests/DependentCheckout
