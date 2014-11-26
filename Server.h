@@ -2,18 +2,18 @@
 #define SERVER_H
 
 #include <string>
+#include "types.h"
 #include "Book.h"
-#include "BookArray.h"
+#include <vector>
 
 class Server
 {
   public:
     Server();
     ~Server();
-    void retrieve(BookArray&);
+    void retrieve(vector<Book*>&);
   private:
-    Book* books[1024];
-    int   maxIndex;
+    vector<Book*> books;
 };
 
 #endif
