@@ -4,8 +4,8 @@ Library::Library(){
 	storage = new Storage();
 }
 
-BookArray* Library::GetAllBooks(){
-	BookArray* books = new BookArray();
+vector<Book*>* Library::GetAllBooks(){
+	vector<Book*>* books = new vector<Book*>();
 	storage->retBooks(books);
 	return books;
 }
@@ -37,20 +37,18 @@ Patron* Library::findPatron(Name* name){
 }
 
 Book* Library::findBook(unsigned int id){
-	BookArray* books = new BookArray();
-	storage->retBooks(books);
+	vector<Book*> books;
+	storage->retBooks(&books);
 
-	int numBooks = books->Count();
+	int numBooks = books.size();
 	for (int i = 0; i < numBooks; ++i)
 	{
-		if(books->Get(i)->getId() == id){
-			Book* book = books->Get(i);
-			delete books;
+		if(books[i]->getId() == id){
+			Book* book = books[i];
 			return book;
 		}
 	}
 
-	delete books;
 	return NULL;
 }
 

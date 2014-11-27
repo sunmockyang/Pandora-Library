@@ -5,10 +5,10 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include <vector>
 #include "Name.h"
 #include "Book.h"
 #include "PDeque.h"
-#include "BookArray.h"
 
 using namespace std;
 
@@ -21,12 +21,12 @@ class Menu
 		int 	MainMenu();
 		int 	PatronMenu(Name*);
 		int 	AdminMenu();
-		void 	ViewCollectionMenu(BookArray*);
-		void 	viewPatronBookMenu(Name*, BookArray*);
-		void	programEnd(BookArray*, PDeque*);
+		void 	ViewCollectionMenu(vector<Book*>*);
+		void 	viewPatronBookMenu(Name*, vector<Book*>*);
+		void	programEnd(vector<Book*>*, PDeque*);
 
 		void	printBook(Book*);
-		void 	listBooks(BookArray*);
+		void 	listBooks(vector<Book*>*);
 		void 	listPatrons(PDeque*);
 
 		// Assignment 3 prints

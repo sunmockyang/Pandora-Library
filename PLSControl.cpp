@@ -7,7 +7,7 @@ PLSControl::PLSControl(){
 
 void PLSControl::Start(){
 	bool running = true;
-	BookArray* books;
+	vector<Book*>* books;
 	PDeque* patrons = NULL;
 
 	// Main control loop

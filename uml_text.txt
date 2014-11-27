@@ -14,11 +14,11 @@ Menu
 + MainMenu(): int
 + PatronMenu(Name*): int
 + AdminMenu(): int
-+ ViewCollectionMenu(BookArray*): void
-+ viewPatronBookMenu(Name*, BookArray*): void
-+ programEnd(BookArray*, PDeque*): void
++ ViewCollectionMenu(vector<Book*>*): void
++ viewPatronBookMenu(Name*, vector<Book*>*): void
++ programEnd(vector<Book*>*, PDeque*): void
 + printBook(Book*): void
-+ listBooks(BookArray*): void
++ listBooks(vector<Book*>*): void
 + listPatrons(PDeque*): void
 + printPatrons(PDeque*): void
 + printPatronsBack(PDeque*): void
@@ -43,13 +43,13 @@ Library
 + addPatron(Patron*): void
 + updatePatron(Patron*): void
 + deletePatron(Patron*): void
-+ GetAllBooks(): BookArray*
++ GetAllBooks(): vector<Book*>*
 + findBook(unsigned int): Book*
 
 
 Storage
 
-+ retBooks(BookArray*): void
++ retBooks(vector<Book*>*): void
 + retPatrons(PDeque*): void
 + updPatrons(UpdateType, Patron*): void
 - addPatron(Patron*): void
@@ -61,25 +61,7 @@ Storage
 Server
 - maxIndex int
 
-+ retrieve(BookArray&): void
-
-
-BookArray
-+ count int
-
-+ Get(Book*): int
-+ Set(int, Book*): void
-+ Add(int, Book*): Book*
-+ Add(Book*): Book*
-+ Remove(int): Book*
-+ Remove(Book*): Book*
-+ Pop(): Book*
-+ Contains(Book*): bool
-+ CanAdd(): bool
-+ Count(): int
-+ FindIndex(Book*): int
-+ FindIndex(Name*): int
-+ operator+=(Book*): BookArray&
++ retrieve(vector<Book*>&): void
 
 
 Book
@@ -108,7 +90,7 @@ Patron
 + CheckInBook(Book*): void
 + MakeDependent(Patron*): book
 + RemoveDependent(Patron*): Patron*
-+ GetBooks(): BookArray*
++ GetBooks(): vector<Book*>*
 + GetNumBooks(): unsigned int
 + GetLifetimeCO(): int
 + canCheckOut(): bool

@@ -1,10 +1,10 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
+#include <vector>
+
 #include "Patron.h"
 #include "Menu.h"
-
-#include "BookArray.h"
 #include "PDeque.h"
 #include "Storage.h"
 
@@ -23,7 +23,7 @@ public:
 	void deletePatron(Patron*);
 
 	// Books
-	BookArray* GetAllBooks();
+	vector<Book*>* GetAllBooks();
 	Book* findBook(unsigned int);
 private:
 	Storage* storage;

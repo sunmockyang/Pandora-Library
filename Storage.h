@@ -1,11 +1,12 @@
 #ifndef STORAGE_H
 #define STORAGE_H
 
+#include <vector>
+
 #include "Book.h"
 #include "Patron.h"
 #include "AdultPatron.h"
 #include "ChildPatron.h"
-#include "BookArray.h"
 #include "PDeque.h"
 #include "Server.h"
 
@@ -17,7 +18,7 @@ public:
 	Storage();
 	~Storage();
 	
-	void retBooks(BookArray*);
+	void retBooks(vector<Book*>*);
 	void retPatrons(PDeque*);
 	void updPatrons(UpdateType, Patron*);
 

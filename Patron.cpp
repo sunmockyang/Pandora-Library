@@ -3,7 +3,7 @@
 Patron::Patron(Name* name, unsigned int age) : age(age){
 	this->name = name;
 	lifetimeCO = 0;
-	books = new BookArray();
+	// books = new vector<Book*>();
 	dependents = new PDeque();
 	parent = 0;
 }
@@ -11,22 +11,28 @@ Patron::Patron(Name* name, unsigned int age) : age(age){
 Patron::Patron(string first, string last, unsigned int age) : age(age){
 	name = new Name(first, last);
 	lifetimeCO = 0;
-	books = new BookArray();
+	// books = new vector<Book*>();
 	dependents = new PDeque();
 	parent = 0;
 }
 
 void Patron::CheckInBook(Book* book){
-	int i = books->FindIndex(book);
+	int i = 0;
 
-	if(i != -1){
-		books->Remove(i);
+	for (int i = 0; i < books.size(); ++i){
+		if (books[i] == book){
+			break;
+		}
+	}
+
+	if(i < books.size()){
+		books.erase(books.begin() + i);
 	}
 }
 
 void Patron::CheckOutBook(Book* book){
-	if(books->Count() < MAXBOOKCHECKOUT){
-		*books += book;
+	if(books.size() < MAXBOOKCHECKOUT){
+		books.push_back(book);
 		lifetimeCO++;
 	}
 }
@@ -50,12 +56,12 @@ unsigned int Patron::GetAge(){
 	return age;
 }
 
-BookArray* Patron::GetBooks(){
-	return books;
+vector<Book*>* Patron::GetBooks(){
+	return &books;
 }
 
 unsigned int Patron::GetNumBooks(){
-	return books->Count();
+	return books.size();
 }
 
 int Patron::GetLifetimeCO(){
@@ -63,14 +69,14 @@ int Patron::GetLifetimeCO(){
 }
 
 bool Patron::canCheckOut(){
-	return (books->Count() + 1 >= MAXBOOKCHECKOUT) ? false : true;
+	return (books.size() + 1 >= MAXBOOKCHECKOUT) ? false : true;
 }
 
 bool Patron::canCheckIn(Book* book){
-	int numBooks = books->Count();
+	int numBooks = books.size();
 	for (int i = 0; i < numBooks; ++i)
 	{
-		if(books->Get(i)->getId() == book->getId()){
+		if(books[i]->getId() == book->getId()){
 			return true;
 		}
 	}
@@ -91,7 +97,7 @@ int Patron::compare(Patron* patron){
 
 Patron& Patron::operator=(Patron* patron){
 	delete name;
-	delete books;
+	// delete books;
 	delete dependents;
 
 	name = new Name(patron->name->First, patron->name->Last);
@@ -99,9 +105,9 @@ Patron& Patron::operator=(Patron* patron){
 	dependents = new PDeque(*patron->dependents);
 	parent = patron->parent;
 
-	books = new BookArray();
-	for (int i = 0; i < patron->books->Count(); ++i) {
-		*books += patron->books->Get(i);
+	books.clear();
+	for (int i = 0; i < patron->books.size(); ++i) {
+		books.push_back(patron->books[i]);
 	}
 
 	lifetimeCO = patron->lifetimeCO;
@@ -109,6 +115,6 @@ Patron& Patron::operator=(Patron* patron){
 
 Patron::~Patron(){
 	delete name;
-	delete books;
+	// delete books;
 	delete dependents;
 }

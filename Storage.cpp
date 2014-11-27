@@ -18,7 +18,7 @@ Storage::~Storage(){
 	delete server;
 }
 
-void Storage::retBooks(BookArray* bookArr){
+void Storage::retBooks(vector<Book*>* bookArr){
 	server->retrieve(*bookArr);
 }
 

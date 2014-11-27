@@ -41,7 +41,7 @@ int Menu::AdminMenu(){
 	return enterChoice(new string[3]{"1", "2", "0"}, 3);
 }
 
-void Menu::ViewCollectionMenu(BookArray* books){
+void Menu::ViewCollectionMenu(vector<Book*>* books){
 	clearScreen();
 	println("\n                        COLLECTION");
 	println("                        ----------");
@@ -52,7 +52,7 @@ void Menu::ViewCollectionMenu(BookArray* books){
 	scan();
 }
 
-void Menu::viewPatronBookMenu(Name* name, BookArray* books){
+void Menu::viewPatronBookMenu(Name* name, vector<Book*>* books){
 	clearScreen();
 	print("\n                        BOOKS CHECKED OUT FOR: ");
 	cout << name->First << " " << name->Last << endl;
@@ -84,10 +84,10 @@ void Menu::printBook(Book* book){
 	}
 }
 
-void Menu::listBooks(BookArray* books){
-	int numBooks = books->Count();
+void Menu::listBooks(vector<Book*>* books){
+	int numBooks = books->size();
 	for (int i = 0; i < numBooks; ++i){
-		printBook(books->Get(i));
+		printBook((*books)[i]);
 	}
 }
 
@@ -148,7 +148,7 @@ void Menu::printPatronsBack(PDeque* patrons){
 	scan();
 }
 
-void Menu::programEnd(BookArray* books, PDeque* patrons){
+void Menu::programEnd(vector<Book*>* books, PDeque* patrons){
 	clearScreen();
 	
 	println("\n                        COLLECTION");

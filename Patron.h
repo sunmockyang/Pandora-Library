@@ -4,8 +4,8 @@
 #include <string>
 #include "Name.h"
 #include "Book.h"
-#include "BookArray.h"
 #include "PDeque.h"
+#include <vector>
 
 #define MAXBOOKCHECKOUT 20
 
@@ -28,7 +28,7 @@ public:
 	Patron* RemoveDependent(Patron*);
 
 	unsigned int	GetAge();
-	BookArray* 		GetBooks();
+	vector<Book*>* 	GetBooks();
 	unsigned int 	GetNumBooks();
 	virtual int		GetLifetimeCO();
 	bool 			canCheckOut();
@@ -40,7 +40,7 @@ public:
 
 private:
 	unsigned int age;
-	BookArray* books;
+	vector<Book*> books;
 
 protected:
 	int lifetimeCO;
