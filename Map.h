@@ -8,10 +8,17 @@ template <typename K, typename V>
 class Map
 {
 public:
+	Map<K,V>();
+	Map<K,V>(Map<K,V>&);
 	void add(K, V);
 	V find(K);
 	V remove(K);
+	void clear();
+
+	bool containsKey(K);
 	int size();
+
+	void toArray(V[]);
 	
 private:
 	int n = 0;
@@ -21,6 +28,18 @@ private:
 };
 
 #endif
+
+template <typename K, typename V>
+Map<K,V>::Map(){}
+
+template <typename K, typename V>
+Map<K,V>::Map(Map<K,V>& old){
+	n = old.size();
+	for (int i = 0; i < n; ++i){
+		keys[i] = old.keys[i];
+		values[i] = old.values[i];
+	}
+}
 
 template <typename K, typename V>
 void Map<K,V>::add(K key, V value){
@@ -69,4 +88,28 @@ V Map<K,V>::remove(K key){
 }
 
 template <typename K, typename V>
+void Map<K,V>::clear(){
+	for (int i = 0; i < n; ++i)
+	{
+		keys[i] = NULL;
+		values[i] = NULL;
+	}
+	n = 0;
+}
+
+template <typename K, typename V>
+bool Map<K,V>::containsKey(K key){
+	return (find(key) != NULL) ? true : false;
+}
+
+template <typename K, typename V>
 int Map<K,V>::size(){ return n; }
+
+template <typename K, typename V>
+void Map<K,V>::toArray(V v[]){
+	for (int i = 0; i < n; ++i)
+	{
+		v[i] = values[i];
+	}
+	// return values;
+}
