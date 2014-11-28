@@ -68,6 +68,7 @@ void PLSControl::PatronMode(){
 	}
 
 	// Patron mode loop
+	vector<Book*> books;
 	bool patronModeRunning = true;
 	while(patronModeRunning){
 		int choice = menu->PatronMenu(user->name);
@@ -82,7 +83,8 @@ void PLSControl::PatronMode(){
 				break;
 
 			case 3: // List books checked out
-				menu->viewPatronBookMenu(user->name, user->GetBooks());
+				user->GetBooks(books);
+				menu->viewPatronBookMenu(user->name, &books);
 				break;
 
 			case 0:

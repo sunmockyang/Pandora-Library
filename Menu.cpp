@@ -100,7 +100,9 @@ void Menu::listPatrons(PDeque* patrons){
 		cout << string(20 - patron->name->First.length() - patron->name->Last.length(), ' ') << patron->name->First << " " << patron->name->Last;
 		cout << ", lifetime #books: " << patron->GetLifetimeCO() << endl;
 
-		listBooks(patron->GetBooks());
+		vector<Book*> books;
+		patron->GetBooks(books);
+		listBooks(&books);
 
 		if (patron->dependents->count() > 0){
 			cout << string(20, ' ') << " - dependents:" << endl;

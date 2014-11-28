@@ -17,22 +17,12 @@ Patron::Patron(string first, string last, unsigned int age) : age(age){
 }
 
 void Patron::CheckInBook(Book* book){
-	int i = 0;
-
-	for (int i = 0; i < books.size(); ++i){
-		if (books[i] == book){
-			break;
-		}
-	}
-
-	if(i < books.size()){
-		books.erase(books.begin() + i);
-	}
+	books.remove(book->getId());
 }
 
 void Patron::CheckOutBook(Book* book){
 	if(books.size() < MAXBOOKCHECKOUT){
-		books.push_back(book);
+		books.add(book->getId(), book);
 		lifetimeCO++;
 	}
 }
@@ -56,8 +46,14 @@ unsigned int Patron::GetAge(){
 	return age;
 }
 
-vector<Book*>* Patron::GetBooks(){
-	return &books;
+void Patron::GetBooks(vector<Book*>& vec){
+	Book* bookArr[books.size()];
+	books.toArray(bookArr);
+
+	for (int i = 0; i < books.size(); ++i)
+	{
+		vec.push_back(bookArr[i]);
+	}
 }
 
 unsigned int Patron::GetNumBooks(){
@@ -73,14 +69,7 @@ bool Patron::canCheckOut(){
 }
 
 bool Patron::canCheckIn(Book* book){
-	int numBooks = books.size();
-	for (int i = 0; i < numBooks; ++i)
-	{
-		if(books[i]->getId() == book->getId()){
-			return true;
-		}
-	}
-	return false;
+	return books.containsKey(book->getId());
 }
 
 bool Patron::isName(Name* checkName){
@@ -105,16 +94,12 @@ Patron& Patron::operator=(Patron* patron){
 	dependents = new PDeque(*patron->dependents);
 	parent = patron->parent;
 
-	books.clear();
-	for (int i = 0; i < patron->books.size(); ++i) {
-		books.push_back(patron->books[i]);
-	}
+	books = Map<int, Book*>(books);
 
 	lifetimeCO = patron->lifetimeCO;
 }
 
 Patron::~Patron(){
 	delete name;
-	// delete books;
 	delete dependents;
 }

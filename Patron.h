@@ -2,10 +2,11 @@
 #define PATRON_H
 
 #include <string>
+#include <vector>
 #include "Name.h"
 #include "Book.h"
 #include "PDeque.h"
-#include <vector>
+#include "Map.h"
 
 #define MAXBOOKCHECKOUT 20
 
@@ -27,20 +28,20 @@ public:
 	virtual bool MakeDependent(Patron*);
 	Patron* RemoveDependent(Patron*);
 
-	unsigned int	GetAge();
-	vector<Book*>* 	GetBooks();
-	unsigned int 	GetNumBooks();
-	virtual int		GetLifetimeCO();
-	bool 			canCheckOut();
-	bool			canCheckIn(Book*);
-	bool			isName(Name*);
-	int				compare(Patron*);
+	unsigned int    GetAge();
+	void            GetBooks(vector<Book*>&);
+	unsigned int    GetNumBooks();
+	virtual int     GetLifetimeCO();
+	bool            canCheckOut();
+	bool            canCheckIn(Book*);
+	bool            isName(Name*);
+	int             compare(Patron*);
 
 	Patron& operator=(Patron*);
 
 private:
 	unsigned int age;
-	vector<Book*> books;
+	Map<int, Book*> books;
 
 protected:
 	int lifetimeCO;
