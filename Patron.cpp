@@ -3,16 +3,12 @@
 Patron::Patron(Name* name, unsigned int age) : age(age){
 	this->name = name;
 	lifetimeCO = 0;
-	// books = new vector<Book*>();
-	dependents = new PDeque();
 	parent = 0;
 }
 
 Patron::Patron(string first, string last, unsigned int age) : age(age){
 	name = new Name(first, last);
 	lifetimeCO = 0;
-	// books = new vector<Book*>();
-	dependents = new PDeque();
 	parent = 0;
 }
 
@@ -32,14 +28,14 @@ bool Patron::MakeDependent(Patron* parent){
 		return false;
 
 	// Add dependent
-	parent->dependents->push(this);
+	parent->dependents.add(0,this);
 	this->parent = parent;
 
 	return true;
 }
 
 Patron* Patron::RemoveDependent(Patron* patron){
-	return dependents->remove(patron);
+	return dependents.remove(patron);
 }
 
 unsigned int Patron::GetAge(){
@@ -86,12 +82,10 @@ int Patron::compare(Patron* patron){
 
 Patron& Patron::operator=(Patron* patron){
 	delete name;
-	// delete books;
-	delete dependents;
 
 	name = new Name(patron->name->First, patron->name->Last);
 	age = patron->age;
-	dependents = new PDeque(*patron->dependents);
+	dependents = patron->dependents;
 	parent = patron->parent;
 
 	books = Map<int, Book*>(books);
@@ -101,5 +95,4 @@ Patron& Patron::operator=(Patron* patron){
 
 Patron::~Patron(){
 	delete name;
-	delete dependents;
 }

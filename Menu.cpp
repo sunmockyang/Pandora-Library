@@ -103,11 +103,14 @@ void Menu::listPatrons(PDeque* patrons){
 		vector<Book*> books;
 		patron->GetBooks(books);
 		listBooks(&books);
+	
+		Patron* arr[patron->dependents.size()];
+		patron->dependents.toArray(arr);
 
-		if (patron->dependents->count() > 0){
+		if (patron->dependents.size() > 0){
 			cout << string(20, ' ') << " - dependents:" << endl;
-			for (int j = 0; j < patron->dependents->count(); ++j){
-				Patron* dep = patron->dependents->get(j);
+			for (int j = 0; j < patron->dependents.size(); ++j){
+				Patron* dep = arr[j];
 				cout << string(25, ' ') << dep->name->First << " " << dep->name->Last << endl;
 			}
 		}
@@ -173,7 +176,7 @@ Name* Menu::inputName(){
 	do{
 		print("\n        Enter patron last name:  ");
 		Last = scan();
-	} while(First.compare("") == 0);
+	} while(Last.compare("") == 0);
 
 	return new Name(First, Last);
 }

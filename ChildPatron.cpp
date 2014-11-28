@@ -8,9 +8,13 @@ ChildPatron::ChildPatron(Name* name, unsigned int age) : Patron(name, age){
 // AdultPatron class since they both can have dependents
 int ChildPatron::GetLifetimeCO(){
 	int n = lifetimeCO;
-	for (int i = 0; i < dependents->count(); ++i)
+	
+	Patron* arr[dependents.size()];
+	dependents.toArray(arr);
+
+	for (int i = 0; i < dependents.size(); ++i)
 	{
-		n += dependents->get(i)->GetLifetimeCO();
+		n += arr[i]->GetLifetimeCO();
 	}
 	return n;
 }
@@ -19,7 +23,7 @@ bool ChildPatron::MakeDependent(Patron* parent){
 	if(parent == NULL) return false;
 
 	// Add dependent
-	parent->dependents->push(this);
+	parent->dependents.add(0, this);
 	this->parent = parent;
 
 	return true;

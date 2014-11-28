@@ -20,7 +20,7 @@ public:
 	~Patron();
 
 	Name* name;
-	PDeque* dependents;
+	Map<int, Patron*> dependents;
 	Patron* parent;
 
 	void CheckOutBook(Book*);

@@ -6,9 +6,13 @@ AdultPatron::AdultPatron(Name* name, unsigned int age) : Patron(name, age){
 
 int AdultPatron::GetLifetimeCO(){
 	int n = lifetimeCO;
-	for (int i = 0; i < dependents->count(); ++i)
+	
+	Patron* arr[dependents.size()];
+	dependents.toArray(arr);
+
+	for (int i = 0; i < dependents.size(); ++i)
 	{
-		n += dependents->get(i)->GetLifetimeCO();
+		n += arr[i]->GetLifetimeCO();
 	}
 	return n;
 }

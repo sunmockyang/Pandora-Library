@@ -13,6 +13,7 @@ public:
 	void add(K, V);
 	V find(K);
 	V remove(K);
+	V remove(V);
 	void clear();
 
 	bool containsKey(K);
@@ -25,6 +26,8 @@ private:
 
 	K keys[MAXSIZE];
 	V values[MAXSIZE];
+
+	V removeIndex(int);
 };
 
 #endif
@@ -63,19 +66,39 @@ V Map<K,V>::find(K key){
 template <typename K, typename V>
 V Map<K,V>::remove(K key){
 	V value = NULL;
-	int i;
-	for (i = 0; i < n; ++i){
+	for (int i = 0; i < n; ++i){
 		// Look for keys
-		if(value == NULL){
-			if(keys[i] == key){
-				value = values[i];
-			}
+		if(keys[i] == key){
+			value = removeIndex(i);
+			break;
 		}
+	}
+
+	return value;
+}
+
+template <typename K, typename V>
+V Map<K,V>::remove(V value){
+	V val = NULL;
+	for (int i = 0; i < n; ++i){
+		// Look for keys
+		if(values[i] == value){
+			val = removeIndex(i);
+			break;
+		}
+	}
+
+	return val;
+}
+
+template <typename K, typename V>
+V Map<K,V>::removeIndex(int i){
+	V value = values[i];
+
+	for (i = i+1; i < n; ++i){
 		// Shift everything back
-		else{
-			values[i-1] = values[i];
-			keys[i-1] = keys[i];
-		}
+		values[i-1] = values[i];
+		keys[i-1] = keys[i];
 	}
 
 	// Unnecessary but don't want dangling pointers
@@ -111,5 +134,4 @@ void Map<K,V>::toArray(V v[]){
 	{
 		v[i] = values[i];
 	}
-	// return values;
 }
