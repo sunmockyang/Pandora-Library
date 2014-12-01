@@ -55,7 +55,7 @@ void Storage::modPatron(Patron* patron){
 
 	if (oldPatron == NULL) return; // Patron not found. Needs to be added
 
-	oldPatron = patron;
+	*oldPatron = *patron;
 
 	patrons->update(oldPatron); // Update the patron priority
 }
