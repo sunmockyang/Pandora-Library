@@ -1,5 +1,5 @@
 #ifndef PATRONFACTORY_h
-#define PATRONFACTOR_h
+#define PATRONFACTORY_h
 
 #include "Patron.h"
 
