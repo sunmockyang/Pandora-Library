@@ -9,6 +9,8 @@
 #include "Patron.h"
 #include "AdultPatron.h"
 #include "ChildPatron.h"
+#include "AdultPatronFactory.h"
+#include "ChildPatronFactory.h"
 #include "PDeque.h"
 
 class PLSControl
@@ -22,6 +24,9 @@ public:
 private:
 	Library* library;
 	Menu* menu;
+
+	AdultPatronFactory adultFactory;
+	ChildPatronFactory childFactory;
 
 	// Admin
 	void AdminMode();

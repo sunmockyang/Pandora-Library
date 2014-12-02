@@ -172,7 +172,7 @@ void PLSControl::AddPatron(){
 
 	// Check to see if the patron is of age.
 	if (age < 18) {
-		patron = new ChildPatron(name, age);
+		childFactory.createPatron(name->First, name->Last, age, &patron);
 		Patron* parent = NULL;
 		bool canParent = false;
 
@@ -201,7 +201,7 @@ void PLSControl::AddPatron(){
 
 	}
 	else {
-		patron = new AdultPatron(name, age);
+		adultFactory.createPatron(name->First, name->Last, age, &patron);
 	}
 	library->addPatron(patron);
 }

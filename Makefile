@@ -1,7 +1,7 @@
 CC = g++
 CC_FLAGS = -w
 EXE = a5
-OBJ = AdultPatron.o Book.o ChildPatron.o Library.o main.o Menu.o Name.o Patron.o PDeque.o PLSControl.o Storage.o Map.o
+OBJ = AdultPatron.o Book.o ChildPatron.o Library.o main.o Menu.o Name.o Patron.o PDeque.o PLSControl.o Storage.o Map.o AdultPatronFactory.o ChildPatronFactory.o
 
 $(EXE): $(OBJ)
 	$(CC) $(OBJ) Server.o -o $(EXE)
