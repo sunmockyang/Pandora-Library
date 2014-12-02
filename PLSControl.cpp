@@ -165,14 +165,23 @@ void PLSControl::AdminMode(){
 }
 
 void PLSControl::AddPatron(){
-	// library->addPatron(menu->inputName(), menu->inputAge());
 	Name* name = menu->inputName();
 	int age = menu->inputAge();
 	Patron* patron = NULL;
+	PatronFactory* factory;
 
-	// Check to see if the patron is of age.
+	// Check to see if the patron is of age and pick factory
 	if (age < 18) {
-		childFactory.createPatron(name->First, name->Last, age, &patron);
+		factory = &childFactory;
+	} else {
+		factory = &adultFactory;
+	}
+
+	factory->createPatron(name->First, name->Last, age, &patron);
+	delete name;
+
+	// Handle case of child patron
+	if (patron->GetAge() < 18) {
 		Patron* parent = NULL;
 		bool canParent = false;
 
@@ -198,11 +207,8 @@ void PLSControl::AddPatron(){
 				library->updatePatron(parent);
 			}
 		} while(parent == NULL || canParent == false);
+	}
 
-	}
-	else {
-		adultFactory.createPatron(name->First, name->Last, age, &patron);
-	}
 	library->addPatron(patron);
 }
 
