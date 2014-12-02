@@ -3,7 +3,7 @@
 
 #include "Patron.h"
 
-class PatronFatory
+class PatronFactory
 {
 public:
 	virtual void createPatron(string firstName, string lastName, int age, Patron** newPatron) = 0;
