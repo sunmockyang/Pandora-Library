@@ -14,7 +14,7 @@ clean:
 	rm -f $(EXE) $(OBJ)
 
 package: clean
-	tar -cf ../COMP2404_A4_SunmockYang.tar *.h *.cpp Server.o Makefile README
+	tar -cf ../COMP2404_A5_SunmockYang.tar *.h *.cpp Server.o Makefile README
 
 test: clean $(EXE)
 	./$(EXE) < tests/ListPatrons
