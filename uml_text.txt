@@ -145,7 +145,6 @@ Map<K, V>
 + remove(K): V
 + remove(V): V
 + clear(): void
-+ containsKey(K): bool
 + size(): int
 + toArray(V[]): void
 - removeIndex(int): V
