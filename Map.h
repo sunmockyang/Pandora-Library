@@ -16,7 +16,6 @@ public:
 	V remove(V);
 	void clear();
 
-	bool containsKey(K);
 	int size();
 
 	void toArray(V[]);
@@ -118,11 +117,6 @@ void Map<K,V>::clear(){
 		values[i] = NULL;
 	}
 	n = 0;
-}
-
-template <typename K, typename V>
-bool Map<K,V>::containsKey(K key){
-	return (find(key) != NULL) ? true : false;
 }
 
 template <typename K, typename V>

@@ -65,7 +65,7 @@ bool Patron::canCheckOut(){
 }
 
 bool Patron::canCheckIn(Book* book){
-	return books.containsKey(book->getId());
+	return (books.find(book->getId()) != NULL) ? true : false;
 }
 
 bool Patron::isName(Name* checkName){
