@@ -83,18 +83,19 @@ Book
 
 
 Patron
-+ age unsigned int
 # lifetimeCO int
+- age unsigned int
 
 + CheckOutBook(Book*): void
 + CheckInBook(Book*): void
 + MakeDependent(Patron*): book
 + RemoveDependent(Patron*): Patron*
-+ GetBooks(): vector<Book*>*
++ GetAge(): unsigned int
++ GetBooks(vector<Book*>&): void
 + GetNumBooks(): unsigned int
 + GetLifetimeCO(): int
 + canCheckOut(): bool
-+ canCheckIn(): bool
++ canCheckIn(Book*): bool
 + isName(Name*): bool
 + compare(Patron*): int
 + operator=(Patron*): Patron&
@@ -135,3 +136,16 @@ PDeque
 
 PDequeNode
 
+
+Map<K, V>
+- n int
+
++ add(K, V): void
++ find(K): V
++ remove(K): V
++ remove(V): V
++ clear(): void
++ containsKey(K): bool
++ size(): int
++ toArray(V[]): void
+- removeIndex(int): V
