@@ -148,3 +148,15 @@ Map<K, V>
 + size(): int
 + toArray(V[]): void
 - removeIndex(int): V
+
+PatronFactory
+
++ createPatron(string, string, int, Patron**): void
+
+AdultPatronFactory
+
++ createPatron(string, string, int, Patron**): void
+
+ChildPatronFactory
+
++ createPatron(string, string, int, Patron**): void
